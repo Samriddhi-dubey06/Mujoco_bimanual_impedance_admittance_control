@@ -1,0 +1,67 @@
+<mujoco model="scene">
+  <compiler angle="radian"/>
+
+  <option timestep="0.001" gravity="0 0 0" integrator="implicitfast" >
+    <flag contact="enable"/>
+  </option>
+
+
+  <visual>
+    <headlight diffuse="0.8 0.8 0.8" ambient="0.3 0.3 0.3" specular="0.1 0.1 0.1"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="120" elevation="-20"/>
+  </visual>
+
+  <asset>
+    <texture name="ground_tex" type="2d" builtin="checker" width="512" height="512" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" mark="cross" markrgb="1 1 1"/>
+    <material name="ground_mat" texture="ground_tex" texrepeat="4 4" reflectance="0.2"/>
+    <model name="heal_model" file="robot_description/heal.xml"/>
+  </asset> 
+
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" material="ground_mat" rgba="0.9 0.9 0.9 1"/>
+    <light pos="0 0 2.5" dir="0 0 -1" directional="true"/>
+
+    <body name="heal_mount_1" pos="0 -0.25 0" euler="0 0 0">
+      <attach model="heal_model" body="base_link" prefix="1_"/>
+    </body>
+
+    <body name="heal_mount_2" pos="0 0.25 0">
+      <attach model="heal_model" body="base_link" prefix="2_"/>
+    </body>
+    
+    <body name="box" pos="0.4 0 0.2" gravcomp ="1"  >
+      <joint name="box_joint" type="free" damping="15.0" armature="0.01" />
+      <inertial pos="0 0 0" mass="0.5" diaginertia="0.01 0.01 0.01"/>
+      <geom type="box" name="box" size="0.1 0.1 0.1" rgba="0.65 0.5 0.3 1"
+            condim="3"
+            contype="3" conaffinity="3"
+            solimp="0.99 0.99 0.01"
+            solref="0.002 10"
+            friction="1.5 1.0 0.01"
+            margin="0.002"/>
+
+       <!-- Center site for force direction -->
+      <site name="box_center" pos="0 0 0" size="0.005" type="sphere" rgba="1 1 0 1"/>
+
+
+      <!-- Sites for grasping -->
+ 
+      <site name="left_pregrasp_site" pos="0 -0.3 0" size="0.01" type="sphere" quat="0 0 0.7071 0.7071" rgba="0 0.5 1 1"/>
+      <site name="right_pregrasp_site" pos="0 0.3 0" size="0.01" type="sphere"   quat="0 0 -0.7071 0.7071" rgba="1 0.5 0 1"/>
+
+      <site name="left_grasp_site" pos="0 -0.1 0" size="0.01" type="sphere" quat="0 0 0.7071 0.7071" rgba="0 1 0 1"/>
+      <site name="right_grasp_site" pos="0 0.1 0" size="0.01" type="sphere" quat="0 0 -0.7071 0.7071" rgba="1 0 0 1"/>
+    </body>
+  </worldbody>
+
+  <!-- <sensor>
+    <force name="left_grasp_force" site="left_grasp_site"/>
+    <force name="right_grasp_force" site="right_grasp_site"/>
+  </sensor> -->
+  <sensor>
+  <force name="left_grasp_force" site="1_contact_point" />
+  <force name="right_grasp_force" site="2_contact_point" />
+</sensor>
+
+</mujoco>

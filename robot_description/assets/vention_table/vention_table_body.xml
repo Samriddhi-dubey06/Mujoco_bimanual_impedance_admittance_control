@@ -1,0 +1,42 @@
+<mujocoinclude>
+  <body name="vention table" childclass="vention">
+    <inertial mass="0.5" pos="0 0 0.411" fullinertia="0.005 0.005 0.001 0 0 0"/>
+
+    <!-- leg floor pads -->
+    <geom type="cylinder" size="0.039 0.0099" pos="-0.585 -0.384 0.0099" material="vention_black"/>
+    <geom type="cylinder" size="0.039 0.0099" pos="0.585 -0.384 0.0099" material="vention_black"/>
+    <geom type="cylinder" size="0.039 0.0099" pos="-0.585 0.384 0.0099" material="vention_black"/>
+    <geom type="cylinder" size="0.039 0.0099" pos="0.585 0.384 0.0099" material="vention_black"/>
+
+    <!-- leg pad stems -->
+    <geom type="cylinder" size="0.0099 0.0201" pos="-0.585 -0.384 0.03" rgba=".5 .5 .5 1"/>
+    <geom type="cylinder" size="0.0099 0.0201" pos="0.585 -0.384 0.03" rgba=".5 .5 .5 1"/>
+    <geom type="cylinder" size="0.0099 0.0201" pos="-0.585 0.384 0.03" rgba=".5 .5 .5 1"/>
+    <geom type="cylinder" size="0.0099 0.0201" pos="0.585 0.384 0.03" rgba=".5 .5 .5 1"/>
+
+    <!-- legs -->
+    <geom type="box" size="0.0231 0.0231 0.387" pos="-0.585 -0.384 0.435" material="vention_blue"/>
+    <geom type="box" size="0.0231 0.0231 0.387" pos="0.585 -0.384 0.435" material="vention_blue"/>
+    <geom type="box" size="0.0231 0.0231 0.387" pos="-0.585 0.384 0.435" material="vention_blue"/>
+    <geom type="box" size="0.0231 0.0231 0.387" pos="0.585 0.384 0.435" material="vention_blue"/>
+
+    <!-- middle legs -->
+    <geom type="box" size="0.0231 0.0231 0.336" pos="0 0.378 0.438" material="vention_blue"/>
+    <geom type="box" size="0.0231 0.0231 0.336" pos="0 -0.378 0.438" material="vention_blue"/>
+
+    <!-- top board -->
+    <geom type="box" size="0.612 0.408 0.0231" pos="0 0 0.801" material="vention_black"/>
+    <geom type="box" size="0.615 0.411 0.0231" pos="0 0 0.789" material="vention_blue"/>
+
+    <!-- bottom board -->
+    <geom type="box" size="0.603 0.399 0.0051" pos="0 0 0.15" material="vention_black"/>
+    <geom type="box" size="0.606 0.402 0.0231" pos="0 0 0.1239" material="vention_blue"/>
+
+    <!-- collision -->
+    <geom type="box" size="0.606 0.402 0.015" pos="0 0 0.795" class="vention_collision"/>
+
+    <!-- Sites on top board (Left and Right Edge) -->
+    <site name="site_right" pos="-0.60 0 0.807" size="0.015" rgba="1 0 0 1" type="sphere" euler="-1.57 1.57 0"/>
+    <site name="site_left" pos="0.60 0 0.807" size="0.015" rgba="0 1 0 1" type="sphere" euler="-1.57 -1.57 0"/>
+  </body>
+</mujocoinclude>

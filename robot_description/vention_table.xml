@@ -1,0 +1,10 @@
+<mujoco model="Vention table">
+  <compiler angle="radian" meshdir="" texturedir="ventionTable"/>
+
+  <include file="assets/vention_table/vention_table_asset.xml"/>
+
+  <worldbody>
+    <include file="assets/vention_table/vention_table_body.xml"/>
+  </worldbody>
+  
+</mujoco>
